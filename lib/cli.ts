@@ -32,8 +32,8 @@ const exit = (err?: Error) => {
 const program = new Command()
 const { prefix, suffix, caseSensitive, qrCode, workers } = program
   .name("vanity-solana")
-  .option("-p, --prefix <prefix>", "prefix of the address", "")
-  .option("-s, --suffix <suffix>", "suffix of the address", "")
+  .option("-p, --prefix <prefixes>", "prefixes of the address (comma-separated)", "")
+  .option("-s, --suffix <suffixes>", "suffixes of the address (comma-separated)", "")
   .option("-c, --case-sensitive", "case sensitive vanity address", false)
   .option("-q, --qr-code", "show a scannable qr code", false)
   .option("-w, --workers <workers>", "number of worker processes to use", defaultWorkers.toString())

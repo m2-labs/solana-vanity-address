@@ -48,11 +48,21 @@ Generate an address starting with "aa", case insensitive
 ```sh
 vanity-solana -p aa
 ```
+Generate an address starting with  multiple values "aa,bb,cc", coma separated, case insensitive
+```sh
+vanity-solana -p "aa,bb,cc"
+```
+
 
 Generate an address ending with "zz", case insensitive
 
 ```sh
 vanity-solana -s zz
+```
+Generate an address ending with multiple values"zz,xx", coma separated, case insensitive
+
+```sh
+vanity-solana -s "zz,xx"
 ```
 
 Generate an address starting with "A" and ending with "z", case sensitive:

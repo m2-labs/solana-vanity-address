@@ -34,18 +34,28 @@ export const generateVanityAddress = (
   caseSensitive: boolean,
   incrementCounter: () => void
 ) => {
+  const prefixes = prefix.split(',');
+  const suffixes = suffix.split(',');
   let keypair = Keypair.generate()
+  let found = false;
 
-  while (
-    !isValidVanityAddress(
-      keypair.publicKey.toBase58(),
-      prefix,
-      suffix,
-      caseSensitive
-    )
-  ) {
-    incrementCounter()
-    keypair = Keypair.generate()
+  while (!found) {
+    for (const prefix of prefixes) {
+      for (const suffix of suffixes) {
+        if (isValidVanityAddress(keypair.publicKey.toBase58(), prefix, suffix, caseSensitive)) {
+          found = true;
+          break;
+        }
+      }
+      if (found) {
+        break;
+      }
+    }
+
+    if (!found) {
+      incrementCounter();
+      keypair = Keypair.generate();
+    }
   }
 
   return keypair
